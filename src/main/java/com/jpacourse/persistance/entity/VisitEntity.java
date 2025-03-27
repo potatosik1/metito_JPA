@@ -1,6 +1,7 @@
 package com.jpacourse.persistance.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import jakarta.persistence.*;
 
@@ -12,10 +13,22 @@ public class VisitEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String description;
 
 	@Column(nullable = false)
 	private LocalDateTime time;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Relacja @ManyToOne jednokierunkowa od strony dziecka
+	@JoinColumn(name = "DOCTOR_ID")
+	private DoctorEntity doctor;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Relacja @ManyToOne dwukierunkowa, od strony rodzica
+	@JoinColumn(name = "PATIENT_ID")
+	private PatientEntity patient;
+
+	@OneToMany(mappedBy = "visit", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Relacja @OneToMany dwukierunkowa od strony dziecka
+	private Collection<MedicalTreatmentEntity> medicalTreatment;
 
 	public Long getId() {
 		return id;

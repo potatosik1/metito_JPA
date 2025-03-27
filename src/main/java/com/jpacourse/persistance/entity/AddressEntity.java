@@ -11,13 +11,25 @@ public class AddressEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String city;
 
+	@Column(nullable = false)
 	private String addressLine1;
 
+	@Column(nullable = false)
 	private String addressLine2;
 
+	@Column(nullable = false)
 	private String postalCode;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // relacja @OneToOne jednokierunkowa od strony rodzica
+	@JoinColumn(name = "DOCTOR_ID")
+	private DoctorEntity doctor;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // relacja @OneToOne jednokierunkowa od strony rodzica
+	@JoinColumn(name = "PATIENT_ID")
+	private PatientEntity patient;
 
 	public Long getId() {
 		return id;
