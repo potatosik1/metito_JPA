@@ -19,7 +19,7 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Relacja @ManyToOne jednokierunkowa od strony dziecka
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Relacja @ManyToOne dwukierunkowe od strony dziecka
 	@JoinColumn(name = "DOCTOR_ID")
 	private DoctorEntity doctor;
 
@@ -28,7 +28,7 @@ public class VisitEntity {
 	private PatientEntity patient;
 
 	@OneToMany(mappedBy = "visit", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Relacja @OneToMany dwukierunkowa od strony dziecka
-	private Collection<MedicalTreatmentEntity> medicalTreatment;
+	private Collection<MedicalTreatmentEntity> medicalTreatment; //jako liste stringow w zadaniu 2
 
 	public Long getId() {
 		return id;
@@ -53,5 +53,4 @@ public class VisitEntity {
 	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
-
 }

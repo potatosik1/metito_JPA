@@ -34,6 +34,9 @@ public class PatientEntity {
 	@OneToMany(mappedBy = "patient") // relacja OneToMany dwukierunkowa mapowana przez pacjenta, od strony dziecka
 	private Collection<VisitEntity> visits;
 
+	@Column
+	private boolean isForeigner;
+
 	public Long getId() {
 		return id;
 	}
@@ -90,4 +93,11 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public boolean getIsForeigner() {
+		return isForeigner;
+	}
+
+	public void setIsForeigner(boolean isForeigner) {
+		this.isForeigner = isForeigner;
+	}
 }
