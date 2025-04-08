@@ -62,6 +62,14 @@ public class VisitEntity {
 		this.doctor = doctor;
 	}
 
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
 	public Collection<MedicalTreatmentEntity> getMedicalTreatment() {
 		return medicalTreatment;
 	}
