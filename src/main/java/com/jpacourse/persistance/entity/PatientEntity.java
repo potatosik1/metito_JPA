@@ -31,7 +31,7 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
-	@OneToMany(mappedBy = "patient") // relacja OneToMany dwukierunkowa mapowana przez pacjenta, od strony dziecka
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL) // relacja OneToMany dwukierunkowa mapowana przez pacjenta, od strony dziecka
 	private Collection<VisitEntity> visits;
 
 	@Column
@@ -99,5 +99,13 @@ public class PatientEntity {
 
 	public void setIsForeigner(boolean isForeigner) {
 		this.isForeigner = isForeigner;
+	}
+
+	public Collection<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public void setVisits(Collection<VisitEntity> visits) {
+		this.visits = visits;
 	}
 }

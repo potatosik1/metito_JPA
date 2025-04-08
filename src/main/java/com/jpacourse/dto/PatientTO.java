@@ -6,7 +6,7 @@ import java.util.Collection;
 public class PatientTO implements Serializable {
     private Collection<VisitTO> visits;
 
-    private boolean isPrivateVisit;
+    private boolean isPrivateVisitor;
 
     public Collection<VisitTO> getVisits() {
         return visits;
@@ -16,11 +16,11 @@ public class PatientTO implements Serializable {
         this.visits = visits;
     }
 
-    public boolean getIsPrivateVisit() {
-        return isPrivateVisit;
+    public boolean getIsPrivateVisitor() {
+        return isPrivateVisitor;
     }
 
-    public void setIsPrivateVisit(boolean isPrivateVisit) {
-        this.isPrivateVisit = isPrivateVisit;
+    public void setIsPrivateVisitor(boolean isPrivateVisitor) {
+        this.isPrivateVisitor = isPrivateVisitor;
     }
 }
