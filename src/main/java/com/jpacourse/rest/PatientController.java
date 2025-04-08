@@ -25,4 +25,14 @@ public class PatientController {
         }
         throw new EntityNotFoundException(id);
     }
+
+    @GetMapping("/patient/delete/{id}")
+    boolean deleteById(@PathVariable final Long id) {
+        PatientTO patient = patientService.findById(id);
+        if(patient != null)
+        {
+            return patientService.deleteById(id);
+        }
+        throw new EntityNotFoundException(id);
+    }
 }
