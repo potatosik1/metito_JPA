@@ -21,6 +21,7 @@ public final class PatientMapper {
         }
         final PatientTO patientTo = new PatientTO();
 
+        //TODO przeslij kolekcje wizyt i zmapuj wszystko tam, logika ta sama tylko zasady SOLID
         // Mapowanie wizyt w pętli
         final Collection<VisitEntity> visitsEntity = patientEntity.getVisits();
         Collection<VisitTO> visitsTO = new ArrayList<VisitTO>();

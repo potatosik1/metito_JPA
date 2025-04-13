@@ -27,3 +27,21 @@ Nastepnie zmien adnotacje na
 i powtorz test i obserwacje. Wnioski zapisz na dole tego pliku i skomituj.
 
 Do wybranej encji dodaj wersjonowanie, oraz napisz test (w DAO) sprawdzajacy rownolegla modyfikacje (OptimisticLock)
+
+Opis:
+Dodajemy metody w interfejsach Dao
+Nastepnie tworzymy implementacje w DaoImpl za pomoca EntityManagera
+
+Np.
+
+entityManager.createQuery("SELECT * FROM DoctorEntity d WHERE d.lastName = :param1", DoctorEntity.class).setParameter("param1", pName).getSingleResult(); // nie odnosimy sie do tabel tylko do encji (MUSIMY DODAC ALIAS)
+
+Komenda z like: "SELECT * FROM DoctorEntity d WHERE d.lastName LIKE :param1" .setParameter("param1", "%"+pName+"%");
+
+Komenda z join: "SELECT d FROM DoctorEntity d JOIN d.visits v"
+
+Koemnda z group:"SELECT d FROM DoctorEntity d JOIN d.visits v GROUP BY d HAVING COUNT(v) >= :param1"
+
+Komenda z datami: "SELECT d FROM DoctorEntity d JOIN d.visits v WHERE v.visitDate BETWEEN :param1 AND :param2" i wtedy 2 razy setParameter
+
+Niektore testy moga nie moc miec adnotacji @Transactional, odnosnie ktorego z testow to kazder z zapytan automatycznie otworzy i zamknie transakcje, cos tam z wersjonowaniem i exception

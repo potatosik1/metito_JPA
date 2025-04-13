@@ -37,6 +37,8 @@ public class PatientServiceTest {
     @Transactional
     @Test
     public void deleteById_WhenPatientIsDeleted_ThenRemoveAllVisitsButNotDoctors() {
+        //TODO skrypty sql dzialaja nawet przy odpaleniu testu, nie trzeba tworzyc tutaj obiektow
+
         // Arrange
         //Doktor
         DoctorEntity doctor = new DoctorEntity();
@@ -104,6 +106,7 @@ public class PatientServiceTest {
     @Transactional
     @Test
     public void findById_WhenPatientIsFound_ThenReturnPatient() {
+        //TODO skrypty sql dzialaja nawet przy odpaleniu testu, nie trzeba tworzyc tutaj obiektow
         // Arrange
         //Doktor
         DoctorEntity doctor = new DoctorEntity();
@@ -161,8 +164,8 @@ public class PatientServiceTest {
         assertThat(foundPatient).isNotNull();
         assertThat(foundPatient.getIsPrivateVisitor()).isEqualTo(patientEntity.getIsForeigner());
 
-        VisitTO visit = foundPatient.getVisits().stream().findFirst().orElse(null);
+        VisitTO visit = foundPatient.getVisits().stream().findFirst().orElse(null); //TODO zamien na filtr zamiast find first
         assertThat(visit).isNotNull();
-        assertThat(visit.getDoctorFirstName()).isEqualTo(doctor.getFirstName());
+        assertThat(visit.getDoctorFirstName()).isEqualTo(doctor.getFirstName()); //TODO sprawdz medical treatments czy mapper dobrze zadzialal
     }
 }
