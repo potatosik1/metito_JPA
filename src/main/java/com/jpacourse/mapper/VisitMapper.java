@@ -32,4 +32,16 @@ public final class VisitMapper {
 
         return visitTO;
     }
+
+    public static Collection<VisitTO> mapToTO(final Collection<VisitEntity> visitEntities){
+
+        Collection<VisitTO> mappedVisits = new ArrayList<>();
+
+        for (final VisitEntity visitEntity : visitEntities)
+        {
+            mappedVisits.add(VisitMapper.mapToTO(visitEntity));
+        }
+
+        return mappedVisits;
+    }
 }

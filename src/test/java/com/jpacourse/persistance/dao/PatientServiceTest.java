@@ -37,135 +37,39 @@ public class PatientServiceTest {
     @Transactional
     @Test
     public void deleteById_WhenPatientIsDeleted_ThenRemoveAllVisitsButNotDoctors() {
-        //TODO skrypty sql dzialaja nawet przy odpaleniu testu, nie trzeba tworzyc tutaj obiektow
-
         // Arrange
-        //Doktor
-        DoctorEntity doctor = new DoctorEntity();
-        doctor.setFirstName("Janusz");
-        doctor.setLastName("Kowalski");
-        doctor.setDoctorNumber("12345");
-        doctor.setEmail("doktor@email.com");
-        doctor.setTelephoneNumber("1234567890");
-        doctor.setSpecialization(Specialization.DERMATOLOGIST);
-
-        //MedicalTreatment
-        MedicalTreatmentEntity medicalTreatment = new MedicalTreatmentEntity();
-        medicalTreatment.setDescription("opis");
-        medicalTreatment.setType(TreatmentType.RTG);
-
-        Collection<MedicalTreatmentEntity> medicalTreatments = new ArrayList<>();
-        medicalTreatments.add(medicalTreatment);
-
-        //Visit
-        VisitEntity visitEntity = new VisitEntity();
-        visitEntity.setDescription("opis");
-        visitEntity.setTime(LocalDateTime.now());
-        visitEntity.setMedicalTreatment(medicalTreatments);
-        visitEntity.setDoctor(doctor);
-
-        Collection<VisitEntity> visitEntities = new ArrayList<>();
-        visitEntities.add(visitEntity);
-
-        //Patient
-        PatientEntity patientEntity = new PatientEntity();
-        patientEntity.setFirstName("Jan");
-        patientEntity.setLastName("Kowalski");
-        patientEntity.setPatientNumber("123");
-        patientEntity.setEmail("email@email.com");
-        patientEntity.setDateOfBirth(LocalDate.of(1990, 1, 1));
-        patientEntity.setIsForeigner(false);
-        patientEntity.setTelephoneNumber("1234567890");
-        patientEntity.setVisits(visitEntities);
+        long userId = 102L;
+        long doctorId = 101L;
 
         // Act
-        final PatientEntity saved = patientDao.save(patientEntity);
-        assertThat(saved.getId()).isNotNull();
-        final PatientEntity newSaved = patientDao.findOne(saved.getId());
-        assertThat(newSaved).isNotNull();
-
-        final VisitEntity savedVisit = visitDao.findOne(visitEntity.getId());
-        assertThat(savedVisit.getId()).isNotNull();
-
-        final DoctorEntity savedDoctor = doctorDao.findOne(doctor.getId());
-        assertThat(savedDoctor.getId()).isNotNull();
-
-        patientDao.delete(saved.getId());
+        patientDao.delete(userId);
 
         // Assert
-        final PatientEntity removed = patientDao.findOne(saved.getId());
+        final PatientEntity removed = patientDao.findOne(userId);
         assertThat(removed).isNull();
 
-        final VisitEntity removedVisit = visitDao.findOne(visitEntity.getId());
+        final VisitEntity removedVisit = visitDao.findOne(userId);
         assertThat(removedVisit).isNull();
 
-        final DoctorEntity notRemovedDoctor = doctorDao.findOne(doctor.getId());
+        final DoctorEntity notRemovedDoctor = doctorDao.findOne(doctorId);
         assertThat(notRemovedDoctor).isNotNull();
     }
 
     @Transactional
     @Test
     public void findById_WhenPatientIsFound_ThenReturnPatient() {
-        //TODO skrypty sql dzialaja nawet przy odpaleniu testu, nie trzeba tworzyc tutaj obiektow
         // Arrange
-        //Doktor
-        DoctorEntity doctor = new DoctorEntity();
-        doctor.setFirstName("Janusz");
-        doctor.setLastName("Kowalski");
-        doctor.setDoctorNumber("12345");
-        doctor.setEmail("doktor@email.com");
-        doctor.setTelephoneNumber("1234567890");
-        doctor.setSpecialization(Specialization.DERMATOLOGIST);
-
-        //MedicalTreatment
-        MedicalTreatmentEntity medicalTreatment = new MedicalTreatmentEntity();
-        medicalTreatment.setDescription("opis");
-        medicalTreatment.setType(TreatmentType.RTG);
-
-        Collection<MedicalTreatmentEntity> medicalTreatments = new ArrayList<>();
-        medicalTreatments.add(medicalTreatment);
-
-        //Visit
-        VisitEntity visitEntity = new VisitEntity();
-        visitEntity.setDescription("opis");
-        visitEntity.setTime(LocalDateTime.now());
-        visitEntity.setMedicalTreatment(medicalTreatments);
-        visitEntity.setDoctor(doctor);
-
-        Collection<VisitEntity> visitEntities = new ArrayList<>();
-        visitEntities.add(visitEntity);
-
-        //Patient
-        PatientEntity patientEntity = new PatientEntity();
-        patientEntity.setFirstName("Jan");
-        patientEntity.setLastName("Kowalski");
-        patientEntity.setPatientNumber("123");
-        patientEntity.setEmail("email@email.com");
-        patientEntity.setDateOfBirth(LocalDate.of(1990, 1, 1));
-        patientEntity.setIsForeigner(false);
-        patientEntity.setTelephoneNumber("1234567890");
-        patientEntity.setVisits(visitEntities);
-
         // Act
-        final PatientEntity saved = patientDao.save(patientEntity);
-        assertThat(saved.getId()).isNotNull();
-        final PatientEntity newSaved = patientDao.findOne(saved.getId());
-        assertThat(newSaved).isNotNull();
-
-        final VisitEntity savedVisit = visitDao.findOne(visitEntity.getId());
-        assertThat(savedVisit.getId()).isNotNull();
-
-        final DoctorEntity savedDoctor = doctorDao.findOne(doctor.getId());
-        assertThat(savedDoctor.getId()).isNotNull();
-
-        PatientTO foundPatient = patientService.findById(patientEntity.getId());
+        PatientTO foundPatient = patientService.findById(102L);
 
         // Assert
         assertThat(foundPatient).isNotNull();
-        assertThat(foundPatient.getIsPrivateVisitor()).isEqualTo(patientEntity.getIsForeigner());
+        assertThat(foundPatient.getIsPrivateVisitor()).isEqualTo(true);
 
-        VisitTO visit = foundPatient.getVisits().stream().findFirst().orElse(null); //TODO zamien na filtr zamiast find first
+        VisitTO visit = foundPatient.getVisits().stream().filter(v -> v.getDoctorFirstName().equals("Jan")).findFirst().orElse(null);
         assertThat(visit).isNotNull();
-        assertThat(visit.getDoctorFirstName()).isEqualTo(doctor.getFirstName()); //TODO sprawdz medical treatments czy mapper dobrze zadzialal
+        assertThat(visit.getDoctorFirstName()).isEqualTo("Jan");
+        assertThat(visit.getDoctorLastName()).isEqualTo("Kowalski");
+        assertThat(visit.getMedicalTreatments()).contains("USG");
     }
 }

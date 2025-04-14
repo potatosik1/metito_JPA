@@ -2,6 +2,7 @@ package com.jpacourse.persistance.dao.impl;
 
 import com.jpacourse.dto.VisitTO;
 import com.jpacourse.persistance.dao.DoctorDao;
+import com.jpacourse.persistance.dao.MedicalTreatmentDao;
 import com.jpacourse.persistance.dao.PatientDao;
 import com.jpacourse.persistance.entity.DoctorEntity;
 import com.jpacourse.persistance.entity.MedicalTreatmentEntity;
@@ -22,11 +23,11 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
     @Autowired
     private DoctorDao doctorDao;
 
+    @Autowired
+    private MedicalTreatmentDao medicalTreatmentDao;
+
     @Override
     public void addVisit(Long patientId, Long doctorId, LocalDateTime visitDate, String description) {
-
-        //TODO pozamieniaj entity managery tak jak z doctor dao
-
         PatientEntity patientEntity = findOne(patientId);
         if(patientEntity == null) {
             throw new EntityNotFoundException(patientId);
@@ -37,12 +38,12 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
             throw new EntityNotFoundException(doctorId);
         }
 
-        MedicalTreatmentEntity medicalTreatmentEntity = entityManager.find(MedicalTreatmentEntity.class, 105); // TEST
+        MedicalTreatmentEntity medicalTreatmentEntity = medicalTreatmentDao.findOne(105L); // TEST
         if(medicalTreatmentEntity == null) {
             throw new EntityNotFoundException(105L);
         }
 
-        MedicalTreatmentEntity medicalTreatmentEntity2 = entityManager.find(MedicalTreatmentEntity.class, 106); // TEST2
+        MedicalTreatmentEntity medicalTreatmentEntity2 = medicalTreatmentDao.findOne(106L); // TEST2
         if(medicalTreatmentEntity2 == null) {
             throw new EntityNotFoundException(106L);
         }
