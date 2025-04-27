@@ -45,3 +45,12 @@ Koemnda z group:"SELECT d FROM DoctorEntity d JOIN d.visits v GROUP BY d HAVING 
 Komenda z datami: "SELECT d FROM DoctorEntity d JOIN d.visits v WHERE v.visitDate BETWEEN :param1 AND :param2" i wtedy 2 razy setParameter
 
 Niektore testy moga nie moc miec adnotacji @Transactional, odnosnie ktorego z testow to kazder z zapytan automatycznie otworzy i zamknie transakcje, cos tam z wersjonowaniem i exception
+
+
+
+
+WNIOSKI
+
+FetchMode.SELECT - przy pobieraniu pacjenta Hibernate wykona osobne SELECTY na tabelę wizyt, w logach widać osobne zapytania na każdą kolekcję wizit
+
+FetchMode.JOIN - Hibernate łączy pacjenta i wizyty za pomocą LEFT OUTER JOIN w jednym zapytaniu SQL, wykona się to szybciej dla mniejszej liczby danych ale isnitje ryzyko dupliukatów przy dużych kolekcjach
