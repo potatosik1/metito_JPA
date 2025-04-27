@@ -79,4 +79,21 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
 
         return visits;
     }
+
+    public Collection<PatientEntity> getPatientsWithMoreVisitsThanX(Long visitsAmount){
+        Collection<PatientEntity> patients = entityManager
+                .createQuery("SELECT p FROM PatientEntity p JOIN p.visits v GROUP BY p HAVING COUNT(v) > :param1", PatientEntity.class)
+                .setParameter("param1", visitsAmount).getResultList();
+
+        return patients;
+    }
+
+    public Collection<PatientEntity> getPatientsWithVisitsAfterX(LocalDate date)
+    {
+        Collection<PatientEntity> patients = entityManager
+                .createQuery("SELECT p FROM PatientEntity p JOIN p.visits v WHERE v.time > :param1", PatientEntity.class)
+                .setParameter("param1", date.atStartOfDay()).getResultList();
+
+        return patients;
+    }
 }

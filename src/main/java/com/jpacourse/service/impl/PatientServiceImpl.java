@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -67,6 +68,20 @@ public class PatientServiceImpl implements PatientService
         Collection<VisitEntity> visits = patientDao.getAllVisitsByPatientId(id);
 
         return VisitMapper.mapToTO(visits);
+    }
+
+    @Override
+    public Collection<PatientTO> findPatientsWithMoreVisitsThanX(Long amount){
+        Collection<PatientEntity> patients = patientDao.getPatientsWithMoreVisitsThanX(amount);
+
+        return PatientMapper.mapToTO(patients);
+    }
+
+    @Override
+    public Collection<PatientTO> findPatientsWithVisitsAfterX(LocalDate date){
+        Collection<PatientEntity> patients = patientDao.getPatientsWithVisitsAfterX(date);
+
+        return PatientMapper.mapToTO(patients);
     }
 }
 
