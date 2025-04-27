@@ -54,5 +54,19 @@ public class PatientServiceImpl implements PatientService
         PatientEntity patient = patientDao.findOne(patientId);
         return PatientMapper.mapToTO(patient);
     }
+
+    @Override
+    public PatientTO findBySurname(String surname){
+        PatientEntity patient = patientDao.getPatientBySurname(surname);
+
+        return PatientMapper.mapToTO(patient);
+    }
+
+    @Override
+    public Collection<VisitTO> findVisitsByPatientId(Long id){
+        Collection<VisitEntity> visits = patientDao.getAllVisitsByPatientId(id);
+
+        return VisitMapper.mapToTO(visits);
+    }
 }
 
