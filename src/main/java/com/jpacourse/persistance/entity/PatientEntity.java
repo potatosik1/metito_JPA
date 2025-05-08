@@ -37,6 +37,10 @@ public class PatientEntity {
 	@Column
 	private boolean isForeigner;
 
+	@Version
+	@Column(nullable = false)
+	private Long version;
+
 	public Long getId() {
 		return id;
 	}
@@ -107,5 +111,13 @@ public class PatientEntity {
 
 	public void setVisits(Collection<VisitEntity> visits) {
 		this.visits = visits;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 }

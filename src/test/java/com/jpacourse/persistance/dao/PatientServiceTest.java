@@ -72,4 +72,15 @@ public class PatientServiceTest {
         assertThat(visit.getDoctorLastName()).isEqualTo("Słomka");
         assertThat(visit.getMedicalTreatments()).contains("USG");
     }
+
+    @Transactional
+    @Test
+    public void findVisitsByPatientId_WhenExecuted_ThenReturnVisits() {
+        // Arrange
+        // Act
+        Collection<VisitTO> visits = patientService.findVisitsByPatientId(102L);
+
+        // Assert
+        assertThat(visits.size()).isGreaterThan(0);
+    }
 }

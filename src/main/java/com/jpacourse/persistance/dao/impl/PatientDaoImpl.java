@@ -63,4 +63,37 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
 
         update(patientEntity); // Kaskadowo zapisze też wizytę
     }
+
+    public PatientEntity getPatientBySurname(String surname){
+        PatientEntity patient = entityManager
+                .createQuery("SELECT p FROM PatientEntity p WHERE p.lastName = :param1", PatientEntity.class)
+                .setParameter("param1", surname).getSingleResult();
+
+        return patient;
+    }
+
+    public Collection<VisitEntity> getAllVisitsByPatientId(Long patientId){
+        Collection<VisitEntity> visits = entityManager
+                .createQuery("SELECT v FROM PatientEntity p JOIN p.visits v WHERE p.id = :param1", VisitEntity.class)
+                .setParameter("param1", patientId).getResultList();
+
+        return visits;
+    }
+
+    public Collection<PatientEntity> getPatientsWithMoreVisitsThanX(Long visitsAmount){
+        Collection<PatientEntity> patients = entityManager
+                .createQuery("SELECT p FROM PatientEntity p JOIN p.visits v GROUP BY p HAVING COUNT(v) > :param1", PatientEntity.class)
+                .setParameter("param1", visitsAmount).getResultList();
+
+        return patients;
+    }
+
+    public Collection<PatientEntity> getPatientsWithVisitsAfterX(LocalDate date)
+    {
+        Collection<PatientEntity> patients = entityManager
+                .createQuery("SELECT p FROM PatientEntity p JOIN p.visits v WHERE v.time > :param1", PatientEntity.class)
+                .setParameter("param1", date.atStartOfDay()).getResultList();
+
+        return patients;
+    }
 }

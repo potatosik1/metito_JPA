@@ -31,4 +31,16 @@ public final class PatientMapper {
 
         return patientTo;
     }
+
+    public static Collection<PatientTO> mapToTO(final Collection<PatientEntity> patientEntities){
+
+        Collection<PatientTO> mappedPatients = new ArrayList<>();
+
+        for (final PatientEntity patientEntity : patientEntities)
+        {
+            mappedPatients.add(PatientMapper.mapToTO(patientEntity));
+        }
+
+        return mappedPatients;
+    }
 }
