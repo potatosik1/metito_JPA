@@ -28,10 +28,10 @@ public class PatientDaoTest {
         long visitCount = visitDao.findAll().stream().count();
 
         // Act
-        patientDao.addVisit(102L, 101L, LocalDateTime.now(), "TEST");
+        patientDao.addVisit(202L, 101L, LocalDateTime.now(), "TEST");
 
         // Assert
-        PatientEntity patientEntity = patientDao.findOne(102L);
+        PatientEntity patientEntity = patientDao.findOne(202L);
         long newVisitCount = visitDao.findAll().stream().count();
 
         assertThat(newVisitCount).isEqualTo(visitCount + 1);

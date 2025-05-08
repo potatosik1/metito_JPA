@@ -38,7 +38,7 @@ public class PatientServiceTest {
     @Test
     public void deleteById_WhenPatientIsDeleted_ThenRemoveAllVisitsButNotDoctors() {
         // Arrange
-        long userId = 102L;
+        long userId = 202L;
         long doctorId = 101L;
 
         // Act
@@ -60,16 +60,16 @@ public class PatientServiceTest {
     public void findById_WhenPatientIsFound_ThenReturnPatient() {
         // Arrange
         // Act
-        PatientTO foundPatient = patientService.findById(102L);
+        PatientTO foundPatient = patientService.findById(202L);
 
         // Assert
         assertThat(foundPatient).isNotNull();
-        assertThat(foundPatient.getIsPrivateVisitor()).isEqualTo(true);
+        assertThat(foundPatient.getIsPrivateVisitor()).isEqualTo(false);
 
-        VisitTO visit = foundPatient.getVisits().stream().filter(v -> v.getDoctorFirstName().equals("Jan")).findFirst().orElse(null);
+        VisitTO visit = foundPatient.getVisits().stream().filter(v -> v.getDoctorFirstName().equals("Magdalena")).findFirst().orElse(null);
         assertThat(visit).isNotNull();
-        assertThat(visit.getDoctorFirstName()).isEqualTo("Jan");
-        assertThat(visit.getDoctorLastName()).isEqualTo("Kowalski");
+        assertThat(visit.getDoctorFirstName()).isEqualTo("Magdalena");
+        assertThat(visit.getDoctorLastName()).isEqualTo("Słomka");
         assertThat(visit.getMedicalTreatments()).contains("USG");
     }
 }

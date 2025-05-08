@@ -37,7 +37,7 @@ public class PatientController {
         throw new EntityNotFoundException(id);
     }
 
-    @GetMapping("/patient/createVisit/{patientId}+{doctorId}") // Na przyklad /102+101
+    @GetMapping("/patient/createVisit/{patientId}+{doctorId}") // Na przyklad /202+103
     PatientTO createVisitByPatientId(@PathVariable final Long patientId, @PathVariable final Long doctorId) {
         PatientTO patient = patientService.createVisit(patientId, doctorId);
         if(patient != null)

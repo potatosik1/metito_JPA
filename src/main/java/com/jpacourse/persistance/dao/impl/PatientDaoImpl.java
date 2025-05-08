@@ -38,14 +38,14 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
             throw new EntityNotFoundException(doctorId);
         }
 
-        MedicalTreatmentEntity medicalTreatmentEntity = medicalTreatmentDao.findOne(105L); // TEST
+        MedicalTreatmentEntity medicalTreatmentEntity = medicalTreatmentDao.findOne(5011L); // TEST
         if(medicalTreatmentEntity == null) {
-            throw new EntityNotFoundException(105L);
+            throw new EntityNotFoundException(5011L);
         }
 
-        MedicalTreatmentEntity medicalTreatmentEntity2 = medicalTreatmentDao.findOne(106L); // TEST2
+        MedicalTreatmentEntity medicalTreatmentEntity2 = medicalTreatmentDao.findOne(5021L); // TEST2
         if(medicalTreatmentEntity2 == null) {
-            throw new EntityNotFoundException(106L);
+            throw new EntityNotFoundException(5021L);
         }
 
         Collection<MedicalTreatmentEntity> medicalTreatmentEntities = new ArrayList<MedicalTreatmentEntity>();
