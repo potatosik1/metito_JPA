@@ -17,8 +17,8 @@ public class PatientVersioningTest {
     @Test
     public void patientVersioning_WhenPatientModifiedMultipleTimes_ThenThrowOptimisticLockException(){
         // Arrange
-        PatientEntity patient1 = patientDao.findOne(102L);
-        PatientEntity patient2 = patientDao.findOne(102L);
+        PatientEntity patient1 = patientDao.findOne(202L);
+        PatientEntity patient2 = patientDao.findOne(202L);
 
         // Act
         // Modyfikujemy i zapisujemy pierwszy obiekt

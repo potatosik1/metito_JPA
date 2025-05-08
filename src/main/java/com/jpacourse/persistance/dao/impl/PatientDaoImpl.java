@@ -38,6 +38,8 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
             throw new EntityNotFoundException(doctorId);
         }
 
+        var a = doctorEntity.getFirstName();
+
         MedicalTreatmentEntity medicalTreatmentEntity = medicalTreatmentDao.findOne(5011L); // TEST
         if(medicalTreatmentEntity == null) {
             throw new EntityNotFoundException(5011L);

@@ -59,7 +59,7 @@ public class PatientDaoTest {
     @Test
     public void getPatientsWithMoreVisitsThanX_WhenExecuted_FindPatientsWithMoreVisitsThanX(){
         // Arrange
-        Long visitsAmount = 1L;
+        Long visitsAmount = 2L;
 
         // Act
         Collection<PatientEntity> patients = patientDao.getPatientsWithMoreVisitsThanX(visitsAmount);

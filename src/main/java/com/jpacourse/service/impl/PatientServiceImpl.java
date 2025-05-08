@@ -41,9 +41,15 @@ public class PatientServiceImpl implements PatientService
 
     @Override
     public boolean deleteById(Long id) {
-        patientDao.delete(id);
-
         PatientEntity patient = patientDao.findOne(id);
+
+        if(patient == null) {
+            return false;
+        }
+
+        patientDao.delete(patient);
+
+        patient = patientDao.findOne(id);
 
         return patient == null;
     }

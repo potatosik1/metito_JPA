@@ -34,11 +34,14 @@ public class DoctorEntity {
 	private Specialization specialization;
 
 	@OneToMany(
-			cascade = CascadeType.ALL, // default: empty - rozwaz persist
+			cascade = CascadeType.PERSIST, // default: empty - rozwaz persist
 			fetch = FetchType.LAZY // default: LAZY
 	)
 	@JoinColumn(name = "USER_ID")
 	private List<VisitEntity> visits;
+
+	@OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private AddressEntity address;
 
 
 	public Long getId() {

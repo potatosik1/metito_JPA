@@ -78,7 +78,7 @@ public class PatientServiceTest {
     public void findVisitsByPatientId_WhenExecuted_ThenReturnVisits() {
         // Arrange
         // Act
-        Collection<VisitTO> visits = patientService.findVisitsByPatientId(102L);
+        Collection<VisitTO> visits = patientService.findVisitsByPatientId(202L);
 
         // Assert
         assertThat(visits.size()).isGreaterThan(0);

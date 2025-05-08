@@ -15,35 +15,35 @@ insert into doctor (id, first_name, last_name, telephone_number, email, doctor_n
             values(105, 'Helga', 'Krankenhaus', '+48567546390', 'krankenhaus@jpa.com', 'DG2', 'GP');
 
 --PACJENCI--
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(201, 'Karol', 'Nowak', '+481234565789', 'karoln@gmail.com', 'P01','2000-12-12', true);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(201, 'Karol', 'Nowak', '+481234565789', 'karoln@gmail.com', 'P01','2000-12-12', true, 1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(202, 'Brajan', 'Sobieski', '+48563890901', 'brajanek08@wp.pl', 'P02','2008-03-27', false);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(202, 'Brajan', 'Sobieski', '+48563890901', 'brajanek08@wp.pl', 'P02','2008-03-27', false, 1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(203, 'Nasturcja', 'Sowik', '+48683965097', 'nasturcjasowik@gmail.com', 'P03','1986-08-15', false);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(203, 'Nasturcja', 'Sowik', '+48683965097', 'nasturcjasowik@gmail.com', 'P03','1986-08-15', false, 1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(204, 'Piotr', 'Cyjanowicz', '+48598740235', 'cyjan@op.pl', 'P04','2003-09-11', false);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(204, 'Piotr', 'Cyjanowicz', '+48598740235', 'cyjan@op.pl', 'P04','2003-09-11', false, 1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(205, 'Horacy', 'Nowacy', '+48795556423', 'h.nowacy@gmail.com', 'P05','1960-02-12', false);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(205, 'Horacy', 'Nowacy', '+48795556423', 'h.nowacy@gmail.com', 'P05','1960-02-12', false, 1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(206, 'Malaga', 'Nowacy', '+48795556423', 'm.nowacy@gmail.com', 'P06','1999-04-04', false);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(206, 'Malaga', 'Nowacy', '+48795556423', 'm.nowacy@gmail.com', 'P06','1999-04-04', false, 1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(207, 'Sława', 'Biodrowska', '+48699656789', 'slawka@gmail.com', 'P07','1974-04-16', false);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(207, 'Sława', 'Biodrowska', '+48699656789', 'slawka@gmail.com', 'P07','1974-04-16', false,1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(208, 'Lilianna', 'Paderewska', '+48674343890', 'paderewskal@gmail.com', 'P08','1998-12-24', false);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(208, 'Lilianna', 'Paderewska', '+48674343890', 'paderewskal@gmail.com', 'P08','1998-12-24', false, 1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(209, 'Gustav', 'Smoth', '+32968656453', 'smothgus@icloud.com', 'P09','1990-09-12', true);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(209, 'Gustav', 'Smoth', '+32968656453', 'smothgus@icloud.com', 'P09','1990-09-12', true, 1);
 
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner)
-            values(210, 'Bolek', 'Lolek', '+48642109641', 'bolo@gmail.com', 'P10','2000-06-29', false);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, is_foreigner, version)
+            values(210, 'Bolek', 'Lolek', '+48642109641', 'bolo@gmail.com', 'P10','2000-06-29', false, 1);
 
 --ADRESY--
 insert into address (id, address_line1, address_line2, city, postal_code, doctor_id)

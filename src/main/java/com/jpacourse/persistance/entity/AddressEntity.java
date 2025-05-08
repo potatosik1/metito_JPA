@@ -24,11 +24,11 @@ public class AddressEntity {
 	private String postalCode;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // relacja @OneToOne jednokierunkowa od strony rodzica
-	@JoinColumn(name = "DOCTOR_ID")
+	@JoinColumn(name = "DOCTOR_ID", nullable = true)
 	private DoctorEntity doctor;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // relacja @OneToOne jednokierunkowa od strony rodzica
-	@JoinColumn(name = "PATIENT_ID")
+	@JoinColumn(name = "PATIENT_ID", nullable = true)
 	private PatientEntity patient;
 
 	public Long getId() {

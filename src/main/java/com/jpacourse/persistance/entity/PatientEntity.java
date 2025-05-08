@@ -31,11 +31,14 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
-	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL) // relacja OneToMany dwukierunkowa mapowana przez pacjenta, od strony dziecka
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE, orphanRemoval = true) // relacja OneToMany dwukierunkowa mapowana przez pacjenta, od strony dziecka
 	private Collection<VisitEntity> visits;
 
 	@Column
 	private boolean isForeigner;
+
+	@OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+	private AddressEntity address;
 
 	@Version
 	@Column(nullable = false)

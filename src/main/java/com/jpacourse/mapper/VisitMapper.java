@@ -10,7 +10,7 @@ import java.util.Collection;
 public final class VisitMapper {
 
     public static VisitTO mapToTO(final VisitEntity visitEntity) {
-        if (visitEntity == null)
+        if (visitEntity == null || visitEntity.getDescription() == null)
             return null;
 
         final VisitTO visitTO = new VisitTO();
